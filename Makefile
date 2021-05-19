@@ -7,13 +7,16 @@ FLAGS = -IC:\SDL\i686-w64-mingw32\include -LC:\SDL\i686-w64-mingw32\lib -w $(WEI
 WEIRD_FLAGS = -Wl,-subsystem,windows
 
 #This is the target that compiles our executable
-all: class main
+all: Logger class main
 
 main:
-	$(CC) .\code\main.cpp .\lib\class.o $(FLAGS) -o $(OBJ_NAME)
+	$(CC) .\code\main.cpp .\lib\class.o .\lib\Logger.o $(FLAGS) -o $(OBJ_NAME)
 
 class:
 	$(CC) .\code\class.cpp -c -o .\lib\class.o
+
+Logger:
+	$(CC) .\code\Logger.cpp -c -o .\lib\Logger.o
 
 clean:
 	del /f .\bin\executable.exe

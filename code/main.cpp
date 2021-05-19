@@ -1,7 +1,8 @@
 #include <iostream>
+#include <time.h>
 
 #include <SDL2/SDL.h>
-#include "class.h"
+#include "Logger.h"
 
 #define WIDTH 600
 #define HEIGHT 800
@@ -11,12 +12,12 @@ int main(int argc, char *argv[])
     SDL_Init(SDL_INIT_EVERYTHING);
 
     SDL_Window *window = SDL_CreateWindow("Hello SDL World", 0, 50, WIDTH, HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI);
-    
+
     // Check that the window was successfully created
     if ( NULL == window )
     {
         // In the case that the window could not be made...
-        std::cout << "Could not create window: " << SDL_GetError( ) << std::endl;
+        logError(string("Could not create window: ") + string(SDL_GetError()));
         return 1;
     }
     
@@ -28,6 +29,7 @@ int main(int argc, char *argv[])
         {
             if ( SDL_QUIT == windowEvent.type )
             {
+                
                 break;
             }
         }
